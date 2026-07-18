@@ -631,7 +631,8 @@
         <div class="card-inner">
           <!-- FRONT -->
           <div class="card-front">
-            <img class="card-img" src="${c.img}" alt="${c.title}" loading="lazy" onerror="this.outerHTML='<div class=\'card-img-placeholder\'>${c.icon}</div>'"/>
+            <img class="card-img" src="${c.img}" alt="${c.title}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+            <div class="card-img-placeholder" style="display:none">${c.icon}</div>
             <div class="card-front-body">
               <div class="card-category">${c.category}</div>
               <div class="card-title">${c.title}</div>
@@ -693,5 +694,4 @@
   });
 
   // Close modal
-  modalClose.addEventListener('click', () => overlay.classList.remove('open'));
-  overlay.addEventListener('click', (e) => { if (e.ta
+  modalClose.addEventListener('click', () => ove
