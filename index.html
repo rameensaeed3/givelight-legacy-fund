@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>GiveLight – Legacy Fund</title>
+  <title>GiveLight - Legacy Fund</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -30,7 +30,6 @@
       min-height: 100vh;
     }
 
-    /* ── HEADER ── */
     .hero {
       background: linear-gradient(135deg, var(--teal-dark) 0%, var(--teal) 60%, #2a8a72 100%);
       padding: 56px 24px 48px;
@@ -77,35 +76,6 @@
       position: relative;
     }
 
-    /* ── TABS ── */
-    .tabs-row {
-      display: flex;
-      justify-content: center;
-      gap: 0;
-      background: var(--warm-white);
-      border-bottom: 2px solid #e0d9d0;
-      padding: 0 24px;
-      overflow-x: auto;
-    }
-    .tab {
-      padding: 16px 28px;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--text-mid);
-      cursor: pointer;
-      border-bottom: 3px solid transparent;
-      margin-bottom: -2px;
-      white-space: nowrap;
-      transition: all .2s;
-    }
-    .tab:hover { color: var(--teal); }
-    .tab.active {
-      color: var(--teal);
-      border-bottom-color: var(--teal);
-      font-weight: 600;
-    }
-
-    /* ── SECTION ── */
     .section {
       max-width: 1160px;
       margin: 0 auto;
@@ -129,7 +99,6 @@
       line-height: 1.7;
     }
 
-    /* ── FILTER PILLS ── */
     .filter-row {
       display: flex;
       gap: 10px;
@@ -154,7 +123,6 @@
       color: #fff;
     }
 
-    /* ── CARD GRID ── */
     .grid {
       display: flex;
       flex-wrap: wrap;
@@ -162,7 +130,6 @@
       justify-content: center;
     }
 
-    /* ── FLIP CARD ── */
     .card-wrap {
       width: var(--card-w);
       height: var(--card-h);
@@ -191,7 +158,6 @@
       overflow: hidden;
     }
 
-    /* FRONT */
     .card-front {
       background: #fff;
       box-shadow: 0 4px 20px rgba(26,107,92,0.10), 0 1px 4px rgba(0,0,0,0.06);
@@ -209,7 +175,7 @@
     .card-img-placeholder {
       width: 100%;
       height: 210px;
-      display: flex;
+      display: none;
       align-items: center;
       justify-content: center;
       font-size: 48px;
@@ -255,7 +221,6 @@
       stroke-width: 2;
     }
 
-    /* BACK */
     .card-back {
       background: linear-gradient(160deg, var(--teal-dark) 0%, var(--teal) 100%);
       transform: rotateY(180deg);
@@ -341,7 +306,6 @@
       transform: translateY(-1px);
     }
 
-    /* ── FOOTER NOTE ── */
     .footer-note {
       text-align: center;
       margin-top: 56px;
@@ -355,7 +319,6 @@
       text-decoration: none;
     }
 
-    /* ── SELECTED CARD MODAL ── */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -448,32 +411,26 @@
     }
     .btn-secondary:hover { border-color: var(--teal); color: var(--teal); }
 
-    .hidden { display: none !important; }
-
     @media (max-width: 600px) {
       :root { --card-w: 280px; --card-h: 380px; }
-      .tabs-row { justify-content: flex-start; }
     }
   </style>
 </head>
 <body>
 
-<!-- HERO -->
 <div class="hero">
   <div class="hero-eyebrow">Support Us</div>
   <h1>Leave a Lasting Light</h1>
-  <p>Honor someone you love — or create a legacy that endures — by funding something meaningful for a child who needs it most.</p>
+  <p>Honor someone you love -- or create a legacy that endures -- by funding something meaningful for a child who needs it most.</p>
   <div class="hero-divider"></div>
 </div>
 
-<!-- MAIN SECTION -->
 <div class="section">
   <div class="section-intro">
     <h2>Choose Your Legacy</h2>
     <p>Each gift is made in honor of someone special. Click a card to discover the impact and how your contribution comes to life.</p>
   </div>
 
-  <!-- FILTER PILLS -->
   <div class="filter-row">
     <button class="pill active" data-filter="all">All Legacies</button>
     <button class="pill" data-filter="spaces">Named Spaces</button>
@@ -481,16 +438,14 @@
     <button class="pill" data-filter="operational">Operational</button>
   </div>
 
-  <!-- CARD GRID -->
   <div class="grid" id="cardGrid"></div>
 
   <div class="footer-note">
     All Legacy Fund gifts are tax-deductible. GiveLight Foundation is a 4-star Charity Navigator rated nonprofit.<br>
-    Questions? <a href="#">Contact our Legacy Giving Team</a> — we'd love to tell you more.
+    Questions? <a href="#">Contact our Legacy Giving Team</a> -- we would love to tell you more.
   </div>
 </div>
 
-<!-- MODAL -->
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal">
     <div class="modal-header">
@@ -514,184 +469,243 @@
 </div>
 
 <script>
-  const cards = [
-    {
-      category: "Named Spaces",
-      filter: "spaces",
-      icon: "🛏️",
-      title: "Legacy Room",
-      tagline: "A bedroom in one of our homes, dedicated to someone you love.",
-      img: "https://images.unsplash.com/photo-1540932239986-30128078f3c5?w=600&q=80",
-      desc: "Dedicate a bedroom in one of GiveLight's orphan homes to a cherished loved one. A plaque bearing their name greets every child who sleeps there, and you'll receive annual photo updates from the home.",
-      cost: "$2,500 – $5,000",
-      costNote: "One-time gift · Plaque + photo updates included",
-    },
-    {
-      category: "Named Spaces",
-      filter: "spaces",
-      icon: "📚",
-      title: "Legacy Classroom",
-      tagline: "Name the room where futures are shaped every single day.",
-      img: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&q=80",
-      desc: "Fund and name a dedicated learning space inside a GiveLight home. From afternoon tutoring to Project Inspire remote lessons, this classroom becomes the heart of education — and carries your loved one's name for generations.",
-      cost: "$10,000 – $15,000",
-      costNote: "One-time gift · Named signage + annual report",
-    },
-    {
-      category: "Named Spaces",
-      filter: "spaces",
-      icon: "🚿",
-      title: "Legacy Wudu Area",
-      tagline: "A dedicated space for ritual purification, built in lasting memory.",
-      img: "https://images.unsplash.com/photo-1609599006353-e629aaabfeae?w=600&q=80",
-      desc: "Fund the construction or renovation of a wudu (ritual washing) area at a GiveLight home, honoring a loved one whose faith was central to their life. A named plaque marks the space, and every child who uses it benefits from this thoughtful gift.",
-      cost: "$3,000 – $8,000",
-      costNote: "One-time gift · Named plaque + photo update",
-    },
-    {
-      category: "Named Spaces",
-      filter: "spaces",
-      icon: "📖",
-      title: "Legacy Library Corner",
-      tagline: "Shelves of stories, all given in someone's honor.",
-      img: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600&q=80",
-      desc: "Fill a bookshelf at a GiveLight home with books, learning materials, and resources — curated for the children who live there. A small nameplate marks every shelf. Perfect for honoring someone who loved books or believed in education.",
-      cost: "$1,500 – $3,000",
-      costNote: "One-time gift · Books + nameplate",
-    },
-    {
-      category: "Child-Centered",
-      filter: "children",
-      icon: "🎓",
-      title: "Child's Journey Fund",
-      tagline: "Walk with one child from orphan care all the way to college.",
-      img: "https://images.unsplash.com/photo-1577896851905-9a40aa9ed85c?w=600&q=80",
-      desc: "Sponsor the full arc of one child's life — from the moment they enter a GiveLight home through their college graduation. You'll receive letters, photos, and updates as they grow, all in your loved one's name.",
-      cost: "$15,000 – $30,000",
-      costNote: "Endowed gift · Full sponsorship lifecycle",
-    },
-    {
-      category: "Child-Centered",
-      filter: "children",
-      icon: "🌟",
-      title: "Named Scholarship",
-      tagline: "Send a GiveLight child to college in someone's honor every year.",
-      img: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&q=80",
-      desc: "Establish an annual scholarship in your loved one's name that supports a GiveLight child pursuing higher education. Each year, a deserving student is selected and receives funding, mentorship, and your loved one's legacy lives on.",
-      cost: "$2,500/year or $25,000 endowed",
-      costNote: "Annual or one-time endowment",
-    },
-    {
-      category: "Child-Centered",
-      filter: "children",
-      icon: "💛",
-      title: "Legacy Child Sponsorship",
-      tagline: "Ongoing care for a child — given in someone's name.",
-      img: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&q=80",
-      desc: "Sponsor a child's food, medical care, education, and daily needs on an ongoing basis, all in honor of a loved one. Monthly updates and an annual letter from the child connect you to the impact directly.",
-      cost: "$80/month or $3,000+ endowed",
-      costNote: "Recurring monthly or endowed gift",
-    },
-    {
-      category: "Operational",
-      filter: "operational",
-      icon: "🤲",
-      title: "Caregiver Legacy Fund",
-      tagline: "Fund the house parent who becomes family to 20+ children.",
-      img: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=600&q=80",
-      desc: "Endow the salary of a house parent, cook, or tutor at one of GiveLight's homes for 1–3 years. These are the people who tuck children in at night, cook their meals, and guide their character. A named fund honors your loved one through their work.",
-      cost: "$5,000 – $12,000",
-      costNote: "1–3 year endowment · Named fund",
-    },
-    {
-      category: "Operational",
-      filter: "operational",
-      icon: "🏥",
-      title: "Emergency Care Fund",
-      tagline: "A safety net — ready when a child needs it most.",
-      img: "https://images.unsplash.com/photo-1584515933487-779824d29309?w=600&q=80",
-      desc: "Create a named emergency reserve for unexpected medical needs, crisis response, or urgent care for children at a specific GiveLight home. When something unexpected happens, this fund ensures no child goes without help.",
-      cost: "$3,000 – $7,500",
-      costNote: "One-time gift · Named emergency reserve",
-    },
-  ];
-
-  const grid = document.getElementById('cardGrid');
-  const overlay = document.getElementById('modalOverlay');
-  const modalClose = document.getElementById('modalClose');
-
-  function buildCards(filter) {
-    grid.innerHTML = '';
-    const filtered = filter === 'all' ? cards : cards.filter(c => c.filter === filter);
-
-    filtered.forEach((c, i) => {
-      const wrap = document.createElement('div');
-      wrap.className = 'card-wrap';
-      wrap.innerHTML = `
-        <div class="card-inner">
-          <!-- FRONT -->
-          <div class="card-front">
-            <img class="card-img" src="${c.img}" alt="${c.title}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-            <div class="card-img-placeholder" style="display:none">${c.icon}</div>
-            <div class="card-front-body">
-              <div class="card-category">${c.category}</div>
-              <div class="card-title">${c.title}</div>
-              <div class="card-tagline">${c.tagline}</div>
-              <div class="card-flip-hint">
-                <svg viewBox="0 0 24 24"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                Tap to learn more
-              </div>
-            </div>
-          </div>
-          <!-- BACK -->
-          <div class="card-back">
-            <div class="back-icon">${c.icon}</div>
-            <div class="back-title">${c.title}</div>
-            <div class="back-divider"></div>
-            <div class="back-desc">${c.desc}</div>
-            <div class="back-cost">
-              <div class="cost-label">Investment</div>
-              <div class="cost-value">${c.cost}</div>
-              <div class="cost-note">${c.costNote}</div>
-            </div>
-            <button class="back-cta" data-idx="${i}">Dedicate This Gift →</button>
-          </div>
-        </div>
-      `;
-
-      // flip on card click (not on button)
-      wrap.addEventListener('click', (e) => {
-        if (e.target.classList.contains('back-cta')) return;
-        wrap.classList.toggle('flipped');
-      });
-
-      grid.appendChild(wrap);
-    });
-
-    // CTA buttons open modal
-    grid.querySelectorAll('.back-cta').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const c = filtered[+btn.dataset.idx];
-        document.getElementById('modalIcon').textContent = c.icon;
-        document.getElementById('modalTitle').textContent = c.title;
-        document.getElementById('modalCategory').textContent = c.category;
-        document.getElementById('modalDesc').textContent = c.desc;
-        document.getElementById('modalCost').textContent = c.cost;
-        document.getElementById('modalCostNote').textContent = c.costNote;
-        overlay.classList.add('open');
-      });
-    });
+var cards = [
+  {
+    category: "Named Spaces",
+    filter: "spaces",
+    icon: "bed",
+    emoji: "🛏️",
+    title: "Legacy Room",
+    tagline: "A bedroom in one of our homes, dedicated to someone you love.",
+    img: "https://images.unsplash.com/photo-1540932239986-30128078f3c5?w=600&q=80",
+    desc: "Dedicate a bedroom in one of GiveLight's orphan homes to a cherished loved one. A plaque bearing their name greets every child who sleeps there, and you will receive annual photo updates from the home.",
+    cost: "$2,500 - $5,000",
+    costNote: "One-time gift. Plaque + photo updates included"
+  },
+  {
+    category: "Named Spaces",
+    filter: "spaces",
+    icon: "book",
+    emoji: "📚",
+    title: "Legacy Classroom",
+    tagline: "Name the room where futures are shaped every single day.",
+    img: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&q=80",
+    desc: "Fund and name a dedicated learning space inside a GiveLight home. From afternoon tutoring to Project Inspire remote lessons, this classroom becomes the heart of education and carries your loved one's name for generations.",
+    cost: "$10,000 - $15,000",
+    costNote: "One-time gift. Named signage + annual report"
+  },
+  {
+    category: "Named Spaces",
+    filter: "spaces",
+    icon: "water",
+    emoji: "💧",
+    title: "Legacy Wudu Area",
+    tagline: "A dedicated space for ritual purification, built in lasting memory.",
+    img: "https://images.unsplash.com/photo-1564769625905-50e93615e769?w=600&q=80",
+    desc: "Fund the construction or renovation of a wudu (ritual washing) area at a GiveLight home, honoring a loved one whose faith was central to their life. A named plaque marks the space, and every child who uses it benefits from this thoughtful gift.",
+    cost: "$3,000 - $8,000",
+    costNote: "One-time gift. Named plaque + photo update"
+  },
+  {
+    category: "Named Spaces",
+    filter: "spaces",
+    icon: "library",
+    emoji: "📖",
+    title: "Legacy Library Corner",
+    tagline: "Shelves of stories, all given in someone's honor.",
+    img: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600&q=80",
+    desc: "Fill a bookshelf at a GiveLight home with books, learning materials, and resources curated for the children who live there. A small nameplate marks every shelf. Perfect for honoring someone who loved books or believed in education.",
+    cost: "$1,500 - $3,000",
+    costNote: "One-time gift. Books + nameplate"
+  },
+  {
+    category: "Child-Centered",
+    filter: "children",
+    icon: "grad",
+    emoji: "🎓",
+    title: "Child's Journey Fund",
+    tagline: "Walk with one child from orphan care all the way to college.",
+    img: "https://images.unsplash.com/photo-1577896851905-9a40aa9ed85c?w=600&q=80",
+    desc: "Sponsor the full arc of one child's life from the moment they enter a GiveLight home through their college graduation. You will receive letters, photos, and updates as they grow, all in your loved one's name.",
+    cost: "$15,000 - $30,000",
+    costNote: "Endowed gift. Full sponsorship lifecycle"
+  },
+  {
+    category: "Child-Centered",
+    filter: "children",
+    icon: "star",
+    emoji: "🌟",
+    title: "Named Scholarship",
+    tagline: "Send a GiveLight child to college in someone's honor every year.",
+    img: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&q=80",
+    desc: "Establish an annual scholarship in your loved one's name that supports a GiveLight child pursuing higher education. Each year, a deserving student is selected and receives funding, mentorship, and your loved one's legacy lives on.",
+    cost: "$2,500/year or $25,000 endowed",
+    costNote: "Annual or one-time endowment"
+  },
+  {
+    category: "Child-Centered",
+    filter: "children",
+    icon: "heart",
+    emoji: "💛",
+    title: "Legacy Child Sponsorship",
+    tagline: "Ongoing care for a child, given in someone's name.",
+    img: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&q=80",
+    desc: "Sponsor a child's food, medical care, education, and daily needs on an ongoing basis, all in honor of a loved one. Monthly updates and an annual letter from the child connect you to the impact directly.",
+    cost: "$80/month or $3,000+ endowed",
+    costNote: "Recurring monthly or endowed gift"
+  },
+  {
+    category: "Operational",
+    filter: "operational",
+    icon: "hands",
+    emoji: "🤲",
+    title: "Caregiver Legacy Fund",
+    tagline: "Fund the house parent who becomes family to 20+ children.",
+    img: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=600&q=80",
+    desc: "Endow the salary of a house parent, cook, or tutor at one of GiveLight's homes for 1-3 years. These are the people who tuck children in at night, cook their meals, and guide their character. A named fund honors your loved one through their work.",
+    cost: "$5,000 - $12,000",
+    costNote: "1-3 year endowment. Named fund"
+  },
+  {
+    category: "Operational",
+    filter: "operational",
+    icon: "medical",
+    emoji: "🏥",
+    title: "Emergency Care Fund",
+    tagline: "A safety net, ready when a child needs it most.",
+    img: "https://images.unsplash.com/photo-1584515933487-779824d29309?w=600&q=80",
+    desc: "Create a named emergency reserve for unexpected medical needs, crisis response, or urgent care for children at a specific GiveLight home. When something unexpected happens, this fund ensures no child goes without help.",
+    cost: "$3,000 - $7,500",
+    costNote: "One-time gift. Named emergency reserve"
   }
+];
 
-  // Pills
-  document.querySelectorAll('.pill').forEach(pill => {
-    pill.addEventListener('click', () => {
-      document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
-      pill.classList.add('active');
-      buildCards(pill.dataset.filter);
+var grid = document.getElementById('cardGrid');
+var overlay = document.getElementById('modalOverlay');
+var modalClose = document.getElementById('modalClose');
+
+function imgError(img) {
+  img.style.display = 'none';
+  var placeholder = img.nextElementSibling;
+  if (placeholder) placeholder.style.display = 'flex';
+}
+
+function buildCards(filter) {
+  grid.innerHTML = '';
+  var filtered = filter === 'all' ? cards : cards.filter(function(c) { return c.filter === filter; });
+
+  filtered.forEach(function(c, i) {
+    var wrap = document.createElement('div');
+    wrap.className = 'card-wrap';
+
+    var inner = document.createElement('div');
+    inner.className = 'card-inner';
+
+    // FRONT
+    var front = document.createElement('div');
+    front.className = 'card-front';
+
+    var img = document.createElement('img');
+    img.className = 'card-img';
+    img.src = c.img;
+    img.alt = c.title;
+    img.loading = 'lazy';
+    img.onerror = function() { imgError(this); };
+
+    var placeholder = document.createElement('div');
+    placeholder.className = 'card-img-placeholder';
+    placeholder.textContent = c.emoji;
+
+    var body = document.createElement('div');
+    body.className = 'card-front-body';
+    body.innerHTML = '<div class="card-category">' + c.category + '</div>'
+      + '<div class="card-title">' + c.title + '</div>'
+      + '<div class="card-tagline">' + c.tagline + '</div>'
+      + '<div class="card-flip-hint">'
+      + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">'
+      + '<path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" stroke-linecap="round" stroke-linejoin="round"/>'
+      + '</svg>Tap to learn more</div>';
+
+    front.appendChild(img);
+    front.appendChild(placeholder);
+    front.appendChild(body);
+
+    // BACK
+    var back = document.createElement('div');
+    back.className = 'card-back';
+
+    var backIcon = document.createElement('div');
+    backIcon.className = 'back-icon';
+    backIcon.textContent = c.emoji;
+
+    var backTitle = document.createElement('div');
+    backTitle.className = 'back-title';
+    backTitle.textContent = c.title;
+
+    var backDivider = document.createElement('div');
+    backDivider.className = 'back-divider';
+
+    var backDesc = document.createElement('div');
+    backDesc.className = 'back-desc';
+    backDesc.textContent = c.desc;
+
+    var backCost = document.createElement('div');
+    backCost.className = 'back-cost';
+    backCost.innerHTML = '<div class="cost-label">Investment</div>'
+      + '<div class="cost-value">' + c.cost + '</div>'
+      + '<div class="cost-note">' + c.costNote + '</div>';
+
+    var cta = document.createElement('button');
+    cta.className = 'back-cta';
+    cta.textContent = 'Dedicate This Gift';
+    cta.dataset.idx = i;
+
+    back.appendChild(backIcon);
+    back.appendChild(backTitle);
+    back.appendChild(backDivider);
+    back.appendChild(backDesc);
+    back.appendChild(backCost);
+    back.appendChild(cta);
+
+    inner.appendChild(front);
+    inner.appendChild(back);
+    wrap.appendChild(inner);
+
+    wrap.addEventListener('click', function(e) {
+      if (e.target.classList.contains('back-cta')) return;
+      wrap.classList.toggle('flipped');
     });
+
+    grid.appendChild(wrap);
   });
 
-  // Close modal
-  modalClose.addEventListener('click', () => ove
+  grid.querySelectorAll('.back-cta').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var c = filtered[parseInt(btn.dataset.idx)];
+      document.getElementById('modalIcon').textContent = c.emoji;
+      document.getElementById('modalTitle').textContent = c.title;
+      document.getElementById('modalCategory').textContent = c.category;
+      document.getElementById('modalDesc').textContent = c.desc;
+      document.getElementById('modalCost').textContent = c.cost;
+      document.getElementById('modalCostNote').textContent = c.costNote;
+      overlay.classList.add('open');
+    });
+  });
+}
+
+document.querySelectorAll('.pill').forEach(function(pill) {
+  pill.addEventListener('click', function() {
+    document.querySelectorAll('.pill').forEach(function(p) { p.classList.remove('active'); });
+    pill.classList.add('active');
+    buildCards(pill.dataset.filter);
+  });
+});
+
+modalClose.addEventListener('click', function() { overlay.classList.remove('open'); });
+overlay.addEventListener('click', function(e) { if (e.target === overlay) overlay.classList.remove('open'); });
+
+buildCards('all');
+</script>
+</body>
+</html>
