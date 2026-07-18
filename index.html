@@ -213,6 +213,7 @@
       align-items: center;
       justify-content: center;
       font-size: 48px;
+      background: linear-gradient(135deg, #e8f4f0, #d0e8e0);
     }
     .card-front-body {
       padding: 20px 22px 18px;
@@ -542,7 +543,7 @@
       icon: "🚿",
       title: "Legacy Wudu Area",
       tagline: "A dedicated space for ritual purification, built in lasting memory.",
-      img: "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&q=80",
+      img: "https://images.unsplash.com/photo-1609599006353-e629aaabfeae?w=600&q=80",
       desc: "Fund the construction or renovation of a wudu (ritual washing) area at a GiveLight home, honoring a loved one whose faith was central to their life. A named plaque marks the space, and every child who uses it benefits from this thoughtful gift.",
       cost: "$3,000 – $8,000",
       costNote: "One-time gift · Named plaque + photo update",
@@ -630,7 +631,7 @@
         <div class="card-inner">
           <!-- FRONT -->
           <div class="card-front">
-            <img class="card-img" src="${c.img}" alt="${c.title}" loading="lazy" onerror="this.style.display='none'"/>
+            <img class="card-img" src="${c.img}" alt="${c.title}" loading="lazy" onerror="this.outerHTML='<div class=\'card-img-placeholder\'>${c.icon}</div>'"/>
             <div class="card-front-body">
               <div class="card-category">${c.category}</div>
               <div class="card-title">${c.title}</div>
@@ -693,9 +694,4 @@
 
   // Close modal
   modalClose.addEventListener('click', () => overlay.classList.remove('open'));
-  overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.classList.remove('open'); });
-
-  buildCards('all');
-</script>
-</body>
-</html>
+  overlay.addEventListener('click', (e) => { if (e.ta
